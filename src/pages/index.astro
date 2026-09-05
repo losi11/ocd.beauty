@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import bannerImg from "@assets/banner.png";
-import ServiceList from "@components/service-list.astro";
+import bannerImage from "@assets/banner.png";
+import Service from "@components/service.astro";
 import Layout from "@layouts/main-layout.astro";
 ---
 
@@ -29,11 +29,25 @@ import Layout from "@layouts/main-layout.astro";
           format="avif"
           loading="eager"
           quality={80}
-          src={bannerImg}
+          src={bannerImage}
         />
       </div>
 
-      <ServiceList />
+      <nav
+        class="flex flex-col border border-dotted border-zinc-800 divide-y divide-dotted divide-zinc-800 bg-[#000000]"
+      >
+        <Service icon="forgejo" name="Forgejo" url="https://git.ocd.beauty" />
+        <Service
+          icon="navidrome"
+          name="Navidrome"
+          url="https://music.ocd.beauty"
+        />
+        <Service
+          icon="woodpecker-ci"
+          name="Woodpecker CI"
+          url="https://ci.ocd.beauty"
+        />
+      </nav>
     </div>
   </main>
 </Layout>

@@ -1,13 +1,5 @@
 @import "tailwindcss";
 
-@font-face {
-  font-display: swap;
-  font-family: "Barriecito";
-  font-style: normal;
-  font-weight: 400;
-  src: url("/fonts/barriecito-v18-latin-regular.woff2") format("woff2");
-}
-
-@theme {
-  --font-barriecito: "Barriecito", cursive, sans-serif;
+@theme inline {
+  --font-barriecito: var(--font-barriecito);
 }

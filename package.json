@@ -11,8 +11,10 @@
     "preview": "astro preview"
   },
   "dependencies": {
+    "@astrojs/node": "^11.1.5",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.3.1",
+    "lightningcss": "^1.33.0",
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {

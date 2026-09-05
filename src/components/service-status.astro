@@ -1,0 +1,31 @@
+---
+interface Props {
+  url: string;
+}
+
+const { url } = Astro.props;
+
+let isUp = false;
+let duration = 0;
+
+const start = performance.now();
+try {
+  const res = await fetch(url, {
+    cache: "no-store",
+    signal: AbortSignal.timeout(3000),
+  });
+  duration = Math.round(performance.now() - start);
+  isUp = res.ok;
+} catch {
+  isUp = false;
+}
+---
+
+{isUp ? (
+    <>
+      <span class="text-[#4ade80]">[UP]</span>
+      <span class="text-base text-zinc-500">{duration}ms</span>
+    </>
+  ) : (
+    <span class="text-[#f87171]">[DOWN]</span>
+  )}

@@ -11,12 +11,18 @@ COPY . .
 
 RUN bun run build
 
-FROM joseluisq/static-web-server:2.44.0 AS final
+FROM oven/bun:1-alpine AS final
 
-COPY --from=base /losi-online/dist /public
+WORKDIR /app
 
-ENV SERVER_LOG_LEVEL=info
-ENV SERVER_LOG_FORMAT=pretty
-ENV SERVER_LOG_WITH_ANSI=true
+COPY --from=base /losi-online/package.json ./
+COPY --from=base /losi-online/node_modules ./node_modules
+COPY --from=base /losi-online/dist ./dist
+
+ENV HOST=0.0.0.0
+ENV PORT=80
+ENV NODE_ENV=production
 
 EXPOSE 80
+
+CMD ["bun", "./dist/server/entry.mjs"]
