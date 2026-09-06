@@ -11,8 +11,12 @@ import Section from "@components/section.astro";
 import Service from "@components/service.astro";
 import Layout from "@layouts/layout.astro";
 
-const lastfmUser = import.meta.env.LAST_FM_USERNAME;
-const lastfmKey = import.meta.env.LAST_FM_API_KEY;
+const lastFmUser = process.env.PUBLIC_LAST_FM_USER;
+const lastFmApiKey = process.env.PUBLIC_LAST_FM_API_KEY;
+
+if (!(lastFmApiKey && lastFmUser)) {
+  return;
+}
 ---
 
 <Layout>
@@ -76,7 +80,7 @@ const lastfmKey = import.meta.env.LAST_FM_API_KEY;
       </Section>
 
       <Section title="Last.fm">
-        <Scrobble apiKey={lastfmKey} username={lastfmUser} />
+        <Scrobble apiKey={lastFmApiKey} username={lastFmUser} />
       </Section>
 
       <Footer repo="losi11/ocd.beauty" />

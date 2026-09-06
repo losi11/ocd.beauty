@@ -2,16 +2,19 @@
 import { execSync } from "node:child_process";
 
 interface Props {
-  repo?: string;
+  repo: string;
 }
 
 const { repo } = Astro.props;
 
-let commit = "dev";
-try {
-  commit = execSync("git rev-parse --short HEAD").toString().trim();
-} catch {
-  console.log("Error");
+let commit = process.env.COMMIT_HASH || "dev";
+
+if (commit === "dev") {
+  try {
+    commit = execSync("git rev-parse --short HEAD").toString().trim();
+  } catch {
+    console.log("Error");
+  }
 }
 
 const commitUrl = `https://github.com/${repo}/commit/${commit}`;
