@@ -24,7 +24,7 @@ const commitUrl = `https://github.com/${repo}/commit/${commit}`;
   class="mt-4 flex flex-col items-center gap-1.5 font-ibm-plex-mono text-xs text-zinc-500"
 >
   <div class="flex items-center gap-1">
-    <span>built with</span>
+    <span>Built with</span>
     <a
       class="text-zinc-300 transition-colors hover:text-white"
       href="https://astro.build"
@@ -45,7 +45,7 @@ const commitUrl = `https://github.com/${repo}/commit/${commit}`;
   </div>
 
   <div class="flex items-center gap-1 text-[11px] text-zinc-600">
-    <span>commit:</span>
+    <span>Commit:</span>
     <a
       class="text-zinc-400 transition-colors hover:text-zinc-200"
       href={commit === "dev" ? `https://github.com/${repo}` : commitUrl}

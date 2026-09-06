@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-barriecito: var(--font-barriecito);
+  --font-tiny5: var(--font-tiny5);
   --font-ibm-plex-mono: var(--font-ibm-plex-mono);
 }

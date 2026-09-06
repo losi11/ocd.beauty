@@ -10,13 +10,13 @@ export default defineConfig({
   },
   fonts: [
     {
-      cssVariable: "--font-barriecito",
+      cssVariable: "--font-tiny5",
       fallbacks: ["cursive", "sans-serif"],
-      name: "Barriecito",
+      name: "Tiny5",
       options: {
         variants: [
           {
-            src: ["./src/assets/fonts/barriecito-v18-latin-regular.woff2"],
+            src: ["./src/assets/fonts/tiny5-v3-latin-regular.woff2"],
             style: "normal",
             weight: "normal",
           },

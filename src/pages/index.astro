@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import bannerImage from "@assets/banner.png";
+import bannerImage from "@assets/banner.avif";
 import About from "@components/about.astro";
 import Footer from "@components/footer.astro";
 import Gpg from "@components/gpg.astro";
@@ -11,8 +11,10 @@ import Section from "@components/section.astro";
 import Service from "@components/service.astro";
 import Layout from "@layouts/layout.astro";
 
-const lastFmUser = process.env.PUBLIC_LAST_FM_USER;
-const lastFmApiKey = process.env.PUBLIC_LAST_FM_API_KEY;
+const lastFmUser =
+  process.env.PUBLIC_LAST_FM_USER || import.meta.env.PUBLIC_LAST_FM_USER;
+const lastFmApiKey =
+  process.env.PUBLIC_LAST_FM_API_KEY || import.meta.env.PUBLIC_LAST_FM_API_KEY;
 
 if (!(lastFmApiKey && lastFmUser)) {
   return;
@@ -48,16 +50,6 @@ if (!(lastFmApiKey && lastFmUser)) {
         <nav
           class="flex flex-col divide-y divide-dotted divide-zinc-800 border border-dotted border-zinc-800 bg-black"
         >
-          <Service
-            icon="beszel"
-            name="Beszel"
-            url="https://vmi3530434.taile3bcce.ts.net:8090"
-          />
-          <Service
-            icon="dozzle"
-            name="Dozzle"
-            url="https://vmi3530434.taile3bcce.ts.net:8080"
-          />
           <Service icon="forgejo" name="Forgejo" url="https://git.ocd.beauty" />
           <Service
             icon="navidrome"
