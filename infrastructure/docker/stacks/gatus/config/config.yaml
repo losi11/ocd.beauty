@@ -14,16 +14,6 @@ endpoints:
     conditions:
       - "[STATUS] == 200"
 
-ui:
-  custom-css: |
-    @font-face {
-      font-family: "JetBrains Mono";
-      src: url("https://cdn.jsdelivr.net/fontsource/fonts/jetbrains-mono@latest/latin-400-normal.woff2") format("woff2");
-    }
-    body, * {
-      font-family: "JetBrains Mono", monospace !important;
-    }
-
 storage:
   type: sqlite
   path: /data/data.db
