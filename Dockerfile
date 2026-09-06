@@ -40,4 +40,4 @@ COPY --from=pre-release /losi-online/dist ./dist
 USER bun
 EXPOSE 4321
 
-CMD ["bun", "./dist/server/entry.mjs"]
+CMD ["node", "./dist/server/entry.mjs"]
