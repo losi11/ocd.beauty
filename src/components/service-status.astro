@@ -9,13 +9,16 @@ let isUp = false;
 let duration = 0;
 
 const start = performance.now();
+
 try {
-  const res = await fetch(url, {
+  const response = await fetch(url, {
     cache: "no-store",
     signal: AbortSignal.timeout(3000),
   });
+
   duration = Math.round(performance.now() - start);
-  isUp = res.ok;
+
+  isUp = response.ok;
 } catch {
   isUp = false;
 }

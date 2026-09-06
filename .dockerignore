@@ -11,4 +11,5 @@ node_modules
 biome.json
 Dockerfile
 lefthook.yaml
+LICENSE
 renovate.json

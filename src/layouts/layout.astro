@@ -1,18 +1,12 @@
 ---
 import Head from "@components/head.astro";
 import "@styles/global.css";
-
-interface Props {
-  title: string;
-}
-
-const { title } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <Head title={title} />
+    <Head />
   </head>
   <body class="font-barriecito bg-[#000000] text-[#d4d4d8] select-none">
     <slot />
