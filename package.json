@@ -10,16 +10,14 @@
   },
   "dependencies": {
     "@astrojs/node": "^11.1.5",
-    "@tailwindcss/vite": "^4.3.3",
-    "astro": "^7.3.1",
-    "lightningcss": "^1.33.0",
-    "ocd.beauty": ".",
-    "tailwindcss": "^4.3.3"
+    "astro": "^7.3.1"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.9",
+    "@tailwindcss/vite": "^4.3.3",
     "@types/bun": "latest",
     "lefthook": "^2.1.12",
+    "tailwindcss": "^4.3.3",
     "ultracite": "7.10.7"
   },
   "engines": {

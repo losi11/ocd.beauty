@@ -1,13 +1,13 @@
 pre-commit:
   jobs:
-    - run: bun x ultracite fix
-      glob:
+    - glob:
         - "**/*.astro"
         - "**/*.css"
         - "**/*.js"
         - "**/*.jsx"
         - "**/*.json"
         - "**/*.jsonc"
+        - "**/*.mjs"
         - "**/*.ts"
         - "**/*.tsx"
-      stage_fixed: true
+      run: bun x ultracite check

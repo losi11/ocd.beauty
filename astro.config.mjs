@@ -8,7 +8,6 @@ export default defineConfig({
   build: {
     inlineStylesheets: "always",
   },
-  compressHTML: true,
   fonts: [
     {
       cssVariable: "--font-barriecito",
@@ -32,9 +31,6 @@ export default defineConfig({
   },
   site: "https://ocd.beauty",
   vite: {
-    css: {
-      transformer: "lightningcss",
-    },
     plugins: [tailwindcss()],
   },
 });
