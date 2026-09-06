@@ -1,34 +1,38 @@
 ---
 interface Props {
+  pingUrl?: string;
   url: string;
 }
 
-const { url } = Astro.props;
+const { url, pingUrl = url } = Astro.props;
 
 let isUp = false;
-let duration = 0;
+let latency = 0;
 
 const start = performance.now();
 
 try {
-  const response = await fetch(url, {
-    cache: "no-store",
-    signal: AbortSignal.timeout(3000),
+  const response = await fetch(pingUrl, {
+    headers: {
+      "User-Agent": "Astro-Homelab-Ping/1.0",
+    },
+    method: "GET",
+    signal: AbortSignal.timeout(2500),
   });
 
-  duration = Math.round(performance.now() - start);
-
-  isUp = response.ok;
+  latency = Math.round(performance.now() - start);
+  isUp = response.status < 500;
 } catch {
   isUp = false;
 }
 ---
 
 {isUp ? (
-    <>
-      <span class="text-[#4ade80]">[UP]</span>
-      <span class="text-base text-zinc-500">{duration}ms</span>
-    </>
+    <span class="text-zinc-600">
+      [<span class="text-emerald-500">UP:</span> {latency}ms]
+    </span>
   ) : (
-    <span class="text-[#f87171]">[DOWN]</span>
+    <span class="text-zinc-600">
+      [<span class="text-rose-500">DOWN:</span>]
+    </span>
   )}

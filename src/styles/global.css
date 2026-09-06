@@ -2,4 +2,5 @@
 
 @theme inline {
   --font-barriecito: var(--font-barriecito);
+  --font-ibm-plex-mono: var(--font-ibm-plex-mono);
 }

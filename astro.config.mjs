@@ -24,6 +24,21 @@ export default defineConfig({
       },
       provider: fontProviders.local(),
     },
+    {
+      cssVariable: "--font-ibm-plex-mono",
+      fallbacks: ["monospace"],
+      name: "IBM Plex Mono",
+      options: {
+        variants: [
+          {
+            src: ["./src/assets/fonts/ibm-plex-mono-v20-latin-regular.woff2"],
+            style: "normal",
+            weight: "normal",
+          },
+        ],
+      },
+      provider: fontProviders.local(),
+    },
   ],
   output: "server",
   prefetch: {

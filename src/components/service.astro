@@ -1,10 +1,14 @@
 ---
+import beszel from "@assets/beszel.svg?raw";
+import dozzle from "@assets/dozzle.svg?raw";
 import forgejo from "@assets/forgejo.svg?raw";
 import navidrome from "@assets/navidrome.svg?raw";
 import woodpeckerCi from "@assets/woodpecker-ci.svg?raw";
 import ServiceStatus from "@components/service-status.astro";
 
 const icons: Record<string, string> = {
+  beszel,
+  dozzle,
   forgejo,
   navidrome,
   "woodpecker-ci": woodpeckerCi,
@@ -18,29 +22,38 @@ interface Props {
 
 const { icon, name, url } = Astro.props;
 const iconSvg = icons[icon] ?? icon;
+
+const displayUrl = url.replace(/^https?:\/\//, "").replace(/\/$/, "");
 ---
 
 <a
-  class="group flex cursor-pointer items-center justify-between px-4 py-3 transition-colors duration-150 hover:bg-[#0c0c0e]"
+  class="group flex h-13 items-center justify-between px-4 transition-colors duration-150 hover:bg-[#0c0c0e]"
   href={url}
   rel="noopener noreferrer"
   target="_blank"
 >
-  <div class="flex items-center gap-3.5">
+  <div class="flex min-w-0 items-center gap-3.5 pr-2">
     <span
       class="h-6 w-6 shrink-0 text-zinc-500 transition-colors group-hover:text-white [&>svg]:h-full [&>svg]:w-full"
       set:html={iconSvg}
     />
-    <span
-      class="pt-1 text-xl leading-none tracking-wide text-zinc-200 transition-colors group-hover:text-white sm:text-2xl"
-    >
-      {name}
-    </span>
+    <div class="flex min-w-0 flex-col justify-center">
+      <span
+        class="truncate text-base leading-tight tracking-wide text-zinc-200 transition-colors group-hover:text-white"
+      >
+        {name}
+      </span>
+      <span class="truncate text-[10px] leading-tight text-zinc-500 mt-0.5">
+        {displayUrl}
+      </span>
+    </div>
   </div>
 
-  <div class="flex items-center gap-1.5 pt-1 text-lg leading-none">
+  <div
+    class="font-ibm-plex-mono flex shrink-0 items-center gap-1.5 text-xs leading-none"
+  >
     <ServiceStatus url={url} server:defer>
-      <span class="text-zinc-700" slot="fallback">[...]</span>
+      <span class="text-zinc-600" slot="fallback">[...]</span>
     </ServiceStatus>
   </div>
 </a>

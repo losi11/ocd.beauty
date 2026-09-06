@@ -1,0 +1,88 @@
+---
+---
+
+<canvas
+  aria-hidden="true"
+  class="pointer-events-none fixed inset-0 z-0 h-full w-full opacity-15 [image-rendering:pixelated]"
+  id="noise-canvas"
+></canvas>
+
+<script>
+  // biome-ignore-all lint/style/noIncrementDecrement: not needed
+  // biome-ignore-all lint/suspicious/noBitwiseOperators: not needed
+  const canvas = document.getElementById(
+    "noise-canvas"
+  ) as HTMLCanvasElement | null;
+
+  if (canvas) {
+    const ctx = canvas.getContext("2d", { alpha: false });
+
+    if (ctx) {
+      let width = 0;
+      let height = 0;
+      let imgData: ImageData;
+      let buf: Uint32Array;
+
+      const GRAIN_SIZE = 5;
+
+      const FPS = 8;
+      const interval = 1000 / FPS;
+      let lastTime = 0;
+
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      );
+
+      const drawFrame = () => {
+        const len = buf.length;
+        for (let i = 0; i < len; i++) {
+          const shade = (Math.random() * 140) | 0;
+          buf[i] = (255 << 24) | (shade << 16) | (shade << 8) | shade;
+        }
+        ctx.putImageData(imgData, 0, 0);
+      };
+
+      const resize = () => {
+        width = Math.ceil(window.innerWidth / GRAIN_SIZE);
+        height = Math.ceil(window.innerHeight / GRAIN_SIZE);
+        canvas.width = width;
+        canvas.height = height;
+        imgData = ctx.createImageData(width, height);
+        buf = new Uint32Array(imgData.data.buffer);
+        drawFrame();
+      };
+
+      const render = (time: number) => {
+        if (prefersReducedMotion.matches) {
+          return;
+        }
+
+        requestAnimationFrame(render);
+
+        if (document.hidden) {
+          return;
+        }
+
+        if (time - lastTime < interval) {
+          return;
+        }
+        lastTime = time;
+
+        drawFrame();
+      };
+
+      resize();
+      window.addEventListener("resize", resize, { passive: true });
+
+      if (!prefersReducedMotion.matches) {
+        requestAnimationFrame(render);
+      }
+
+      prefersReducedMotion.addEventListener("change", () => {
+        if (!prefersReducedMotion.matches) {
+          requestAnimationFrame(render);
+        }
+      });
+    }
+  }
+</script>

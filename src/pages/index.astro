@@ -1,53 +1,85 @@
 ---
 import { Image } from "astro:assets";
 import bannerImage from "@assets/banner.png";
+import About from "@components/about.astro";
+import Footer from "@components/footer.astro";
+import Gpg from "@components/gpg.astro";
+import Logo from "@components/logo.astro";
+import Noise from "@components/noise.astro";
+import Scrobble from "@components/scrobble.astro";
+import Section from "@components/section.astro";
 import Service from "@components/service.astro";
 import Layout from "@layouts/layout.astro";
+
+const lastfmUser = import.meta.env.LAST_FM_USERNAME;
+const lastfmKey = import.meta.env.LAST_FM_API_KEY;
 ---
 
 <Layout>
-  <main class="flex min-h-screen flex-col items-center justify-center p-6">
-    <div class="flex w-full max-w-sm flex-col gap-5">
-      <header class="flex flex-col items-center text-center">
-        <h1
-          class="my-1 text-5xl leading-none tracking-normal text-[#f4f4f5] lowercase sm:text-6xl"
-        >
-          losi<span class="text-zinc-600">.</span>
-        </h1>
-        <p
-          class="mt-1 cursor-default text-base tracking-wider text-zinc-400 transition-colors duration-150 hover:text-white sm:text-lg"
-        >
-          ★〜（ゝ。∂）
-        </p>
-      </header>
+  <Noise />
 
-      <div class="w-full overflow-hidden">
-        <Image
-          alt="illustration"
-          class="pointer-events-none block h-auto w-full select-none"
-          decoding="async"
-          format="avif"
-          loading="eager"
-          quality={80}
-          src={bannerImage}
-        />
-      </div>
+  <main
+    class="relative z-10 flex min-h-dvh flex-col items-center px-4 py-12 sm:py-16"
+  >
+    <div
+      class="my-auto flex w-full max-w-sm flex-col gap-5 border-2 border-black bg-black p-5 sm:p-6 shadow-2xl"
+    >
+      <Logo />
 
-      <nav
-        class="flex flex-col divide-y divide-dotted divide-zinc-800 border border-dotted border-zinc-800 bg-[#000000]"
-      >
-        <Service icon="forgejo" name="Forgejo" url="https://git.ocd.beauty" />
-        <Service
-          icon="navidrome"
-          name="Navidrome"
-          url="https://music.ocd.beauty"
+      <Image
+        alt="illustration"
+        class="pointer-events-none block h-auto w-full select-none"
+        decoding="async"
+        format="avif"
+        loading="eager"
+        quality={80}
+        src={bannerImage}
+      />
+
+      <Section title="About">
+        <About />
+      </Section>
+
+      <Section title="Self-hosted">
+        <nav
+          class="flex flex-col divide-y divide-dotted divide-zinc-800 border border-dotted border-zinc-800 bg-black"
+        >
+          <Service
+            icon="beszel"
+            name="Beszel"
+            url="https://vmi3530434.taile3bcce.ts.net:8090"
+          />
+          <Service
+            icon="dozzle"
+            name="Dozzle"
+            url="https://vmi3530434.taile3bcce.ts.net:8080"
+          />
+          <Service icon="forgejo" name="Forgejo" url="https://git.ocd.beauty" />
+          <Service
+            icon="navidrome"
+            name="Navidrome"
+            url="https://music.ocd.beauty"
+          />
+          <Service
+            icon="woodpecker-ci"
+            name="Woodpecker CI"
+            url="https://ci.ocd.beauty"
+          />
+        </nav>
+      </Section>
+
+      <Section title="GPG">
+        <Gpg
+          fingerprint="4A91 2E74 5BC1 0F98 3D82 61A4 C8E9 7B3F 252F 7A8D"
+          keyId="0x252F7A8D"
         />
-        <Service
-          icon="woodpecker-ci"
-          name="Woodpecker CI"
-          url="https://ci.ocd.beauty"
-        />
-      </nav>
+      </Section>
+
+      <Section title="Last.fm">
+        <Scrobble apiKey={lastfmKey} username={lastfmUser} />
+      </Section>
+
+      <Footer repo="losi11/ocd.beauty" />
     </div>
   </main>
 </Layout>

@@ -6,6 +6,7 @@ infrastructure
 node_modules
 .DS_Store
 .dockerignore
+.env
 .gitattributes
 .gitignore
 biome.jsonc

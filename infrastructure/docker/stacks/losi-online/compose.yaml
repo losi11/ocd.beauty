@@ -7,6 +7,9 @@ services:
     restart: unless-stopped
     networks:
       - proxy
+    environment:
+      - "LAST_FM_USERNAME=${LAST_FM_USERNAME}"
+      - "LAST_FM_API_KEY=${LAST_FM_API_KEY}"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.losi-online.entryPoints=webSecure"
