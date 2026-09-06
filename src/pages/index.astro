@@ -6,16 +6,16 @@ import Layout from "@layouts/main-layout.astro";
 ---
 
 <Layout title="losi">
-  <main class="min-h-screen flex flex-col items-center justify-center p-6">
-    <div class="w-full max-w-sm flex flex-col gap-5">
-      <header class="text-center flex flex-col items-center">
+  <main class="flex min-h-screen flex-col items-center justify-center p-6">
+    <div class="flex w-full max-w-sm flex-col gap-5">
+      <header class="flex flex-col items-center text-center">
         <h1
-          class="text-5xl sm:text-6xl text-[#f4f4f5] lowercase leading-none my-1 tracking-normal"
+          class="my-1 text-5xl leading-none tracking-normal text-[#f4f4f5] lowercase sm:text-6xl"
         >
           losi<span class="text-zinc-600">.</span>
         </h1>
         <p
-          class="text-base sm:text-lg text-zinc-400 hover:text-white transition-colors duration-150 cursor-default tracking-wider mt-1"
+          class="mt-1 cursor-default text-base tracking-wider text-zinc-400 transition-colors duration-150 hover:text-white sm:text-lg"
         >
           ★〜（ゝ。∂）
         </p>
@@ -24,7 +24,7 @@ import Layout from "@layouts/main-layout.astro";
       <div class="w-full overflow-hidden">
         <Image
           alt="illustration"
-          class="w-full h-auto block select-none pointer-events-none"
+          class="pointer-events-none block h-auto w-full select-none"
           decoding="async"
           format="avif"
           loading="eager"
@@ -34,7 +34,7 @@ import Layout from "@layouts/main-layout.astro";
       </div>
 
       <nav
-        class="flex flex-col border border-dotted border-zinc-800 divide-y divide-dotted divide-zinc-800 bg-[#000000]"
+        class="flex flex-col divide-y divide-dotted divide-zinc-800 border border-dotted border-zinc-800 bg-[#000000]"
       >
         <Service icon="forgejo" name="Forgejo" url="https://git.ocd.beauty" />
         <Service
