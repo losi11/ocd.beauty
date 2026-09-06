@@ -2,19 +2,19 @@ FROM oven/bun:1-alpine AS base
 
 WORKDIR /losi-online
 
-FROM base AS dev-deps
+FROM base AS development-dependencies
 
 COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile --ignore-scripts
 
-FROM base AS prod-deps
+FROM base AS production-dependencies
 
 COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile --production --ignore-scripts
 
 FROM base AS pre-release
 
-COPY --from=dev-deps /losi-online/node_modules ./node_modules
+COPY --from=development-dependencies /losi-online/node_modules ./node_modules
 COPY . .
 
 ENV NODE_ENV=production
@@ -27,7 +27,7 @@ ENV NODE_ENV=production
 ENV HOST=0.0.0.0
 
 COPY package.json ./
-COPY --from=prod-deps /losi-online/node_modules ./node_modules
+COPY --from=production-dependencies /losi-online/node_modules ./node_modules
 COPY --from=pre-release /losi-online/dist ./dist
 
 USER bun
