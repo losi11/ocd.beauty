@@ -1,4 +1,13 @@
 {
+  "type": "module",
+  "scripts": {
+    "build": "astro build",
+    "check": "ultracite check",
+    "dev": "astro dev",
+    "fix": "ultracite fix",
+    "prepare": "lefthook install",
+    "preview": "astro preview"
+  },
   "dependencies": {
     "@astrojs/node": "^11.1.5",
     "@tailwindcss/vite": "^4.3.3",
@@ -13,15 +22,6 @@
     "lefthook": "^2.1.12",
     "ultracite": "7.10.7"
   },
-  "scripts": {
-    "build": "astro build",
-    "check": "ultracite check",
-    "dev": "astro dev",
-    "fix": "ultracite fix",
-    "prepare": "lefthook install",
-    "preview": "astro preview"
-  },
-  "type": "module",
   "engines": {
     "node": ">=22.12.0"
   },
